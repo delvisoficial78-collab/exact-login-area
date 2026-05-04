@@ -14,7 +14,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedMembersRouteImport } from './routes/_authenticated/members'
-import { Route as AuthenticatedMembersCursoIdRouteImport } from './routes/_authenticated/members.curso.$id'
+import { Route as AuthenticatedCursoIdRouteImport } from './routes/_authenticated/curso.$id'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -40,26 +40,25 @@ const AuthenticatedMembersRoute = AuthenticatedMembersRouteImport.update({
   path: '/members',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
-const AuthenticatedMembersCursoIdRoute =
-  AuthenticatedMembersCursoIdRouteImport.update({
-    id: '/curso/$id',
-    path: '/curso/$id',
-    getParentRoute: () => AuthenticatedMembersRoute,
-  } as any)
+const AuthenticatedCursoIdRoute = AuthenticatedCursoIdRouteImport.update({
+  id: '/curso/$id',
+  path: '/curso/$id',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
-  '/members': typeof AuthenticatedMembersRouteWithChildren
-  '/members/curso/$id': typeof AuthenticatedMembersCursoIdRoute
+  '/members': typeof AuthenticatedMembersRoute
+  '/curso/$id': typeof AuthenticatedCursoIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
-  '/members': typeof AuthenticatedMembersRouteWithChildren
-  '/members/curso/$id': typeof AuthenticatedMembersCursoIdRoute
+  '/members': typeof AuthenticatedMembersRoute
+  '/curso/$id': typeof AuthenticatedCursoIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -67,14 +66,14 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
-  '/_authenticated/members': typeof AuthenticatedMembersRouteWithChildren
-  '/_authenticated/members/curso/$id': typeof AuthenticatedMembersCursoIdRoute
+  '/_authenticated/members': typeof AuthenticatedMembersRoute
+  '/_authenticated/curso/$id': typeof AuthenticatedCursoIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/signup' | '/members' | '/members/curso/$id'
+  fullPaths: '/' | '/login' | '/signup' | '/members' | '/curso/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/signup' | '/members' | '/members/curso/$id'
+  to: '/' | '/login' | '/signup' | '/members' | '/curso/$id'
   id:
     | '__root__'
     | '/'
@@ -82,7 +81,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/_authenticated/members'
-    | '/_authenticated/members/curso/$id'
+    | '/_authenticated/curso/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -129,33 +128,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMembersRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/members/curso/$id': {
-      id: '/_authenticated/members/curso/$id'
+    '/_authenticated/curso/$id': {
+      id: '/_authenticated/curso/$id'
       path: '/curso/$id'
-      fullPath: '/members/curso/$id'
-      preLoaderRoute: typeof AuthenticatedMembersCursoIdRouteImport
-      parentRoute: typeof AuthenticatedMembersRoute
+      fullPath: '/curso/$id'
+      preLoaderRoute: typeof AuthenticatedCursoIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
   }
 }
 
-interface AuthenticatedMembersRouteChildren {
-  AuthenticatedMembersCursoIdRoute: typeof AuthenticatedMembersCursoIdRoute
-}
-
-const AuthenticatedMembersRouteChildren: AuthenticatedMembersRouteChildren = {
-  AuthenticatedMembersCursoIdRoute: AuthenticatedMembersCursoIdRoute,
-}
-
-const AuthenticatedMembersRouteWithChildren =
-  AuthenticatedMembersRoute._addFileChildren(AuthenticatedMembersRouteChildren)
-
 interface AuthenticatedRouteChildren {
-  AuthenticatedMembersRoute: typeof AuthenticatedMembersRouteWithChildren
+  AuthenticatedMembersRoute: typeof AuthenticatedMembersRoute
+  AuthenticatedCursoIdRoute: typeof AuthenticatedCursoIdRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticatedMembersRoute: AuthenticatedMembersRouteWithChildren,
+  AuthenticatedMembersRoute: AuthenticatedMembersRoute,
+  AuthenticatedCursoIdRoute: AuthenticatedCursoIdRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
