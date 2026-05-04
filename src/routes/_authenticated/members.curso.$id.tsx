@@ -34,10 +34,11 @@ function CoursePage() {
       <div className="mt-4 aspect-video w-full overflow-hidden rounded-2xl border border-border bg-black shadow-[var(--shadow-glow)]">
         <iframe
           key={lesson.id}
-          src={`https://www.youtube.com/embed/${lesson.youtubeId}?rel=0&modestbranding=1`}
+          src={`https://www.youtube-nocookie.com/embed/${lesson.youtubeId}?rel=0&modestbranding=1&playsinline=1`}
           title={lesson.title}
           className="h-full w-full"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
           allowFullScreen
         />
       </div>
