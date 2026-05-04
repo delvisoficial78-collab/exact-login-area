@@ -56,7 +56,7 @@ function CoursePage() {
             return (
               <li key={l.id}>
                 <Link
-                  to="/members/curso/$id"
+                  to="/curso/$id"
                   params={{ id: l.id }}
                   className={`flex items-center justify-between px-4 py-3 transition hover:bg-accent/40 ${
                     active ? "bg-primary/10" : ""
