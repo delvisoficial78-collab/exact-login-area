@@ -61,7 +61,7 @@ function MembersHome() {
             </div>
             <p className="mt-3 max-w-xl text-base text-muted-foreground">{featured.description}</p>
             <Link
-              to="/members/curso/$id"
+              to="/curso/$id"
               params={{ id: featured.id }}
               className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-bold text-background transition hover:bg-foreground/90"
             >
@@ -81,7 +81,7 @@ function MembersHome() {
           {lessons.map((l) => (
             <Link
               key={l.id}
-              to="/members/curso/$id"
+              to="/curso/$id"
               params={{ id: l.id }}
               className="group overflow-hidden rounded-2xl border border-border bg-card transition hover:border-primary/50 hover:shadow-[var(--shadow-glow)]"
             >
