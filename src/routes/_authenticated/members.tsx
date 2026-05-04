@@ -1,31 +1,40 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Play, Star, Clock, Users } from "lucide-react";
+import { Play, Star, Clock, Users, LogOut } from "lucide-react";
+import { lessons } from "@/lib/lessons";
+import { useAuth } from "@/lib/auth-context";
+import vodLogo from "@/assets/vod-logo.png";
 
 export const Route = createFileRoute("/_authenticated/members")({
   component: MembersHome,
 });
 
 const featured = {
-  id: "viver-do-digital",
-  title: "Viver do Digital Academy",
+  id: lessons[0].id,
+  title: "Vendas Online Descomplicadas",
   rating: 4.9,
-  duration: "+11h 37min de conteúdo",
+  duration: "+3 aulas exclusivas",
   students: 686,
-  description: "Descubra nossos cursos e treinamentos exclusivos para começar agora.",
+  description: "Comece agora pela Aula 1 e destrave a habilidade que paga mais que faculdade.",
 };
 
-const courses = [
-  { id: "minicurso", title: "MiniCurso Gratuito", subtitle: "Comece por aqui", duration: "1h 20min" },
-  { id: "trafego", title: "Tráfego Pago do Zero", subtitle: "Anúncios que vendem", duration: "3h 15min" },
-  { id: "copy", title: "Copywriting Persuasivo", subtitle: "Escreva para converter", duration: "2h 40min" },
-  { id: "afiliados", title: "Marketing de Afiliados", subtitle: "Sua primeira venda", duration: "4h 10min" },
-];
-
 function MembersHome() {
+  const { signOut } = useAuth();
+
   return (
     <main className="mx-auto max-w-6xl px-4 pb-20">
-      {/* Hero / curso destaque */}
-      <section className="relative mt-4 overflow-hidden rounded-3xl border border-border">
+      {/* Header com logo */}
+      <header className="mt-4 flex items-center justify-between">
+        <img src={vodLogo} alt="VOD - Vendas Online Descomplicadas" className="h-12 w-auto sm:h-14" />
+        <button
+          onClick={() => signOut()}
+          className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-semibold text-muted-foreground transition hover:border-primary/50 hover:text-foreground"
+        >
+          <LogOut className="h-3.5 w-3.5" /> Sair
+        </button>
+      </header>
+
+      {/* Hero */}
+      <section className="relative mt-6 overflow-hidden rounded-3xl border border-border">
         <div
           className="relative aspect-[16/10] w-full sm:aspect-[21/9]"
           style={{
@@ -63,37 +72,38 @@ function MembersHome() {
         </div>
       </section>
 
-      {/* Grade de cursos */}
+      {/* Aulas */}
       <section className="mt-10">
-        <h2 className="text-2xl font-extrabold sm:text-3xl">
-          Assista Agora ao MiniCurso Gratuito
-        </h2>
+        <h2 className="text-2xl font-extrabold sm:text-3xl">Suas Aulas</h2>
+        <p className="mt-1 text-sm text-muted-foreground">Assista na ordem para melhores resultados.</p>
 
-        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {courses.map((c) => (
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {lessons.map((l) => (
             <Link
-              key={c.id}
+              key={l.id}
               to="/members/curso/$id"
-              params={{ id: c.id }}
+              params={{ id: l.id }}
               className="group overflow-hidden rounded-2xl border border-border bg-card transition hover:border-primary/50 hover:shadow-[var(--shadow-glow)]"
             >
-              <div
-                className="relative aspect-[3/4] w-full"
-                style={{
-                  background:
-                    "radial-gradient(circle at 50% 80%, oklch(0.42 0.18 150 / 0.6) 0%, oklch(0.18 0.014 160) 65%)",
-                }}
-              >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-foreground/90 text-background transition group-hover:scale-110">
-                    <Play className="h-5 w-5 fill-background" />
+              <div className="relative aspect-video w-full overflow-hidden bg-black">
+                <img
+                  src={`https://i.ytimg.com/vi/${l.youtubeId}/hqdefault.jpg`}
+                  alt={l.title}
+                  className="h-full w-full object-cover opacity-80 transition group-hover:opacity-100"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/70 to-transparent">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-glow)] transition group-hover:scale-110">
+                    <Play className="h-6 w-6 fill-primary-foreground" />
                   </div>
                 </div>
+                <span className="absolute left-3 top-3 rounded-full bg-primary/90 px-3 py-1 text-xs font-bold text-primary-foreground">
+                  {l.duration}
+                </span>
               </div>
-              <div className="p-3">
-                <p className="text-xs text-muted-foreground">{c.subtitle}</p>
-                <h3 className="mt-0.5 line-clamp-2 text-sm font-bold">{c.title}</h3>
-                <p className="mt-1 text-[11px] text-muted-foreground">{c.duration}</p>
+              <div className="p-4">
+                <p className="text-xs uppercase tracking-wide text-primary">{l.subtitle}</p>
+                <h3 className="mt-1 line-clamp-2 text-base font-bold">{l.title}</h3>
               </div>
             </Link>
           ))}
