@@ -19,28 +19,13 @@ function AuthLayout() {
             </div>
             <span className="text-lg font-bold tracking-tight">Members</span>
           </Link>
-          <div className="relative">
-            <button
-              onClick={() => setMenuOpen((v) => !v)}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-foreground transition hover:bg-accent"
-              aria-label="Menu do usuário"
-            >
-              <User className="h-5 w-5" />
-            </button>
-            {menuOpen && (
-              <div className="absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-border bg-popover shadow-lg">
-                <div className="border-b border-border px-4 py-3">
-                  <p className="truncate text-sm font-medium">{user?.email}</p>
-                </div>
-                <button
-                  onClick={() => signOut()}
-                  className="flex w-full items-center gap-2 px-4 py-3 text-left text-sm text-foreground transition hover:bg-accent"
-                >
-                  <LogOut className="h-4 w-4" /> Sair
-                </button>
-              </div>
-            )}
-          </div>
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary text-foreground transition hover:bg-accent"
+            aria-label="Menu"
+          >
+            <User className="h-5 w-5" />
+          </button>
         </div>
       </header>
       <Outlet />
