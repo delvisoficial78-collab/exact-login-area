@@ -8,13 +8,7 @@ export const Route = createFileRoute("/_authenticated")({
 });
 
 function AuthLayout() {
-  const { session, loading, signOut, user } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  if (loading) {
-    return <div className="flex min-h-screen items-center justify-center bg-background" />;
-  }
-  if (!session) return <Navigate to="/login" />;
 
   return (
     <div className="min-h-screen bg-background">
