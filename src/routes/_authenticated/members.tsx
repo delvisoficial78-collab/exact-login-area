@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Play, Star, Clock, Users, LogOut } from "lucide-react";
+import { Play, Star, Clock, Users } from "lucide-react";
 import { lessons } from "@/lib/lessons";
-import { useAuth } from "@/lib/auth-context";
 import vodLogo from "@/assets/vod-logo.png";
 
 export const Route = createFileRoute("/_authenticated/members")({
@@ -18,19 +17,11 @@ const featured = {
 };
 
 function MembersHome() {
-  const { signOut } = useAuth();
-
   return (
     <main className="mx-auto max-w-6xl px-4 pb-20">
       {/* Header com logo */}
       <header className="mt-4 flex items-center justify-between">
         <img src={vodLogo} alt="VOD - Vendas Online Descomplicadas" className="h-12 w-auto sm:h-14" />
-        <button
-          onClick={() => signOut()}
-          className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-semibold text-muted-foreground transition hover:border-primary/50 hover:text-foreground"
-        >
-          <LogOut className="h-3.5 w-3.5" /> Sair
-        </button>
       </header>
 
       {/* Hero */}
