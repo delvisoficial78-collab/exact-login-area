@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ChevronLeft, Play, Check } from "lucide-react";
 import { lessons, getLesson } from "@/lib/lessons";
+import { Comments } from "@/components/Comments";
 
 export const Route = createFileRoute("/_authenticated/curso/$id")({
   component: CoursePage,
@@ -86,6 +87,8 @@ function CoursePage() {
           })}
         </ul>
       </section>
+
+      <Comments lessonId={lesson.id} />
     </main>
   );
 }
