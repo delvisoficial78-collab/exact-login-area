@@ -87,6 +87,8 @@ function CoursePage() {
           })}
         </ul>
       </section>
+
+      <Comments lessonId={lesson.id} />
     </main>
   );
 }
