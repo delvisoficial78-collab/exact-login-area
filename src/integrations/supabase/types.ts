@@ -14,6 +14,30 @@ export type Database = {
   }
   public: {
     Tables: {
+      lesson_comments: {
+        Row: {
+          author_name: string
+          content: string
+          created_at: string
+          id: string
+          lesson_id: string
+        }
+        Insert: {
+          author_name: string
+          content: string
+          created_at?: string
+          id?: string
+          lesson_id: string
+        }
+        Update: {
+          author_name?: string
+          content?: string
+          created_at?: string
+          id?: string
+          lesson_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
