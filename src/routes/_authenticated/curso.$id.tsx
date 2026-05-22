@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ChevronLeft, Play, Check } from "lucide-react";
+import { ChevronLeft, Play } from "lucide-react";
 import { lessons, getLesson } from "@/lib/lessons";
 import { Comments } from "@/components/Comments";
 
