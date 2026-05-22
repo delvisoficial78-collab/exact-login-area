@@ -9,11 +9,11 @@ export const Route = createFileRoute("/_authenticated/members")({
 
 const featured = {
   id: lessons[0].id,
-  title: "Vendas Online Descomplicadas",
+  title: "Viver do Digital Academy",
   rating: 4.9,
   duration: "+3 aulas exclusivas",
   students: 686,
-  description: "Comece agora pela Aula 1 e destrave a habilidade que paga mais que faculdade.",
+  description: "Descubra nossos cursos e treinamentos exclusivos",
 };
 
 function MembersHome() {
