@@ -11,7 +11,7 @@ const featured = {
   id: lessons[0].id,
   title: "Viver do Digital Academy",
   rating: 4.9,
-  duration: "+3 aulas exclusivas",
+  duration: "+2 aulas exclusivas",
   students: 686,
   description: "Descubra nossos cursos e treinamentos exclusivos",
 };

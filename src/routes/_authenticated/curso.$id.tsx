@@ -52,17 +52,27 @@ function CoursePage() {
       {(() => {
         const currentIndex = lessons.findIndex((l) => l.id === lesson.id);
         const next = lessons[currentIndex + 1];
-        if (!next) return null;
         return (
           <section className="mt-8 flex justify-end">
-            <Link
-              to="/curso/$id"
-              params={{ id: next.id }}
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:opacity-90"
-            >
-              Próxima aula
-              <Play className="h-4 w-4" />
-            </Link>
+            {next ? (
+              <Link
+                to="/curso/$id"
+                params={{ id: next.id }}
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:opacity-90"
+              >
+                Próxima aula
+                <Play className="h-4 w-4" />
+              </Link>
+            ) : (
+              <a
+                href="https://wa.me/244955406194?text=Terminei%20de%20assistir%20as%20aulas"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:opacity-90"
+              >
+                Voltar para o WhatsApp
+              </a>
+            )}
           </section>
         );
       })()}
