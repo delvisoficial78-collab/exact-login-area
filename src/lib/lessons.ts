@@ -19,7 +19,7 @@ export const lessons: Lesson[] = [
   {
     id: "aula-2",
     number: 2,
-    title: "A Estratégia que Fatura 50 mil Todos os Dias",
+    title: "A Estratégia que Fatura mais de 200.000 Mensais",
     subtitle: "Aula 2",
     youtubeId: "YTvFc4EzNh4",
     duration: "Aula 02",
