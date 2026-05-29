@@ -56,7 +56,7 @@ function LandingPage() {
             <span className="text-primary">MINICURSO 100% GRATUITO!</span>
           </h1>
           <p className="mt-3 text-base text-muted-foreground">
-            Ligue o Robô e lucre de 200 a 500 reais por dia!
+            Construa a sua estrutura para faturar mais de 200.000 mensais
           </p>
         </div>
 
