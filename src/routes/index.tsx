@@ -38,7 +38,7 @@ function LandingPage() {
       // ignore
     }
     setLoading(false);
-    navigate({ to: "/signup" });
+    navigate({ to: "/members" });
   };
 
   return (
